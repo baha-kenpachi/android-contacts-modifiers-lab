@@ -15,7 +15,7 @@ import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.presentation.base.BaseBottomSheetDialogFragment;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
-public class SortDialogFragment extends BaseBottomSheetDialogFragment<SortViewModel> {
+class SortDialogFragment extends BaseBottomSheetDialogFragment<SortViewModel> {
 
     public static final String REQUEST_KEY = "REQUEST_KEY_SORT";
     public static final String ARG_SELECTED_SORT_TYPE = "ARG_SELECTED_SORT_TYPE";
@@ -51,10 +51,10 @@ public class SortDialogFragment extends BaseBottomSheetDialogFragment<SortViewMo
     }
 
     private void updateState(SortUiState state) {
-        binding.applyButton.setEnabled(state.isApplyEnable);
+        binding.applyButton.setEnabled(state.isApplyEnable());
 
-        if (state.newSelectedSortType != null) {
-            getParentFragmentManager().setFragmentResult(REQUEST_KEY, createBundle(state.newSelectedSortType));
+        if (state.getNewSelectedSortType() != null ) {
+            getParentFragmentManager().setFragmentResult(REQUEST_KEY, createBundle(state.getNewSelectedSortType()));
             dismiss();
         }
     }
